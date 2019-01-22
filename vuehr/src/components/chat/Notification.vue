@@ -134,6 +134,11 @@
           }
         })
       },
+      cancelSend(){
+        this.dialogVisible = false;
+        this.title = '';
+        this.message = '';
+      },
       sendNFMsg(){
         this.dialogLoading = true;
         var _this = this;
@@ -141,7 +146,7 @@
           _this.dialogLoading = false;
           if (resp && resp.status == 200) {
             var data = resp.data;
-            
+
             if (data.status == 'success') {
               _this.$store.state.stomp.send("/ws/nf", {}, '');
               _this.initSysMsgs();
@@ -150,11 +155,11 @@
           }
         })
       },
-      cancelSend(){
-        this.dialogVisible = false;
-        this.title = '';
-        this.message = '';
-      }
+//      cancelSend(){
+//        this.dialogVisible = false;
+//        this.title = '';
+//        this.message = '';
+//      }
     }
   }
 </script>

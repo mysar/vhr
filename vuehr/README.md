@@ -4,10 +4,11 @@
 
 ## Build Setup
 
+ background-color: #1979CA;
 ``` bash
 # install dependencies
 npm install
-npm
+
 # serve with hot reload at localhost:8080
 npm run dev
 

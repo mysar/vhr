@@ -10,7 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class HrServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HrServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HrServerApplication.class, args);
+    }
 }

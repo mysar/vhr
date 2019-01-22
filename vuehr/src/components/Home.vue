@@ -5,7 +5,7 @@
         <span class="home_title">高校人力资源管理系统</span>
         <div style="display: flex;align-items: center;margin-right: 7px">
           <el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">
-            <i class="fa fa-bell-o" @click="goChat" style="cursor: pointer"></i>
+            <i class="fa fa-bullhorn fa-lg" @click="goChat" style="cursor: pointer"></i>
           </el-badge>
           <el-dropdown @command="handleCommand">
   <span class="el-dropdown-link home_userinfo" style="display: flex;align-items: center">
@@ -136,7 +136,7 @@
   }
 
   .home-header {
-    background-color: #1979CA;
+    background-color: #17B3A3;
     color: #333;
     text-align: center;
     display: flex;
