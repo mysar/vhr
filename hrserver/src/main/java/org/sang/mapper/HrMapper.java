@@ -10,6 +10,7 @@ import java.util.List;
  * Created by sang on 2017/12/28.
  */
 public interface HrMapper {
+
     Hr loadUserByUsername(String username);
 
     List<Role> getRolesByHrId(Long id);
