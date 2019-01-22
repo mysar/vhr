@@ -5,7 +5,7 @@
 
     <groupId>org.sang</groupId>
     <artifactId>hrserver</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>19.1.22-beta</version>
     <packaging>jar</packaging>
 
     <name>hrserver</name>
