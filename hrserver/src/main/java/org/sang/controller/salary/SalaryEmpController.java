@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by sang on 2018/1/25.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @RestController
 @RequestMapping("/salary/sobcfg")

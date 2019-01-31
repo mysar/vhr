@@ -3,7 +3,10 @@ package org.sang.bean;
 import java.io.Serializable;
 
 /**
- * Created by sang on 2017/12/30.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public class MenuMeta implements Serializable {
 

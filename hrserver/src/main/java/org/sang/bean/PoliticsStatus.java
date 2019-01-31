@@ -1,7 +1,10 @@
 package org.sang.bean;
 
 /**
- * Created by sang on 2018/1/13.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public class PoliticsStatus {
     private Long id;

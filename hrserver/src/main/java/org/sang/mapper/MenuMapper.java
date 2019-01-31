@@ -1,13 +1,20 @@
 package org.sang.mapper;
 
 import org.sang.bean.Menu;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by sang on 2017/12/28.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
+@Repository
 public interface MenuMapper {
+
     List<Menu> getAllMenu();
 
     List<Menu> getMenusByHrId(Long hrId);

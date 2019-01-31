@@ -3,7 +3,10 @@ package org.sang.bean;
 import java.util.Date;
 
 /**
- * Created by sang on 2018/2/2.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public class MsgContent {
     private Long id;

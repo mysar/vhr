@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 /**
- * 工资账套配置
+ * Tip: 工资账套配置
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
+
 @RestController
 @RequestMapping("/salary/sob")
 public class SalaryController {

@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by sang on 2018/1/7.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public class Department {
     private Long id;

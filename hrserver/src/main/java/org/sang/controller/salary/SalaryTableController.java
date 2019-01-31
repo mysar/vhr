@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by sang on 2018/1/26.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @RestController
 @RequestMapping("/salary/table")

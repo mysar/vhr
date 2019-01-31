@@ -2,6 +2,13 @@ package org.sang.bean;
 
 import java.util.Date;
 
+
+/**
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
+ */
 public class Salary {
     private Integer id;
     private Integer bonus;

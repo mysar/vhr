@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by sang on 2017/12/29.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @RestController
 public class RegLoginController {

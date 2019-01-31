@@ -1,5 +1,11 @@
 package org.sang.bean;
 
+/**
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
+ */
 public class RespBean {
     private Integer status;
     private String msg;

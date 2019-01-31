@@ -9,7 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by sang on 2018/1/12.
+ * Tip: WebSocket 消息处理类
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public interface EmpMapper {
     List<Nation> getAllNations();

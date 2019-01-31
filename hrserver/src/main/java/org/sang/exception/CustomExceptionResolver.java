@@ -1,6 +1,5 @@
 package org.sang.exception;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by sang on 2018/1/2.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @Component
 public class CustomExceptionResolver implements HandlerExceptionResolver {

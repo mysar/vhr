@@ -8,7 +8,10 @@ import org.sang.bean.SysMsg;
 import java.util.List;
 
 /**
- * Created by sang on 2018/2/2.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 public interface SysMsgMapper {
 

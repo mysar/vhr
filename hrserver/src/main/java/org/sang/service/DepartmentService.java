@@ -11,13 +11,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by sang on 2018/1/7.
+ * Tip:
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @Service
 @Transactional
 public class DepartmentService {
+
     @Autowired
     DepartmentMapper departmentMapper;
+
     public int addDep(Department department) {
         department.setEnabled(true);
         departmentMapper.addDep(department);

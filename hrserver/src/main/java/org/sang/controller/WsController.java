@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import java.security.Principal;
 
 /**
- * WebSocket 消息处理类
- * Created by sang on 2018/1/27.
+ * Tip: WebSocket 消息处理类
+ *
+ * @author Im.Yan
+ * @date 2019/2/1
  */
 @Controller
 public class WsController {
