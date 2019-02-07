@@ -3,7 +3,6 @@ package org.sang.mapper;
 import org.sang.bean.Menu;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

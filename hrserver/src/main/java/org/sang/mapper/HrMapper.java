@@ -3,6 +3,7 @@ package org.sang.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.sang.bean.Hr;
 import org.sang.bean.Role;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author Im.Yan
  * @date 2019/2/1
  */
+@Repository
 public interface HrMapper {
 
     Hr loadUserByUsername(String username);

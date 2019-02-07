@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * Tip:
  *
@@ -42,8 +41,13 @@ public class EmpService {
     public int addEmp(Employee employee) {
         Date beginContract = employee.getBeginContract();
         Date endContract = employee.getEndContract();
-        Double contractTerm = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract));
+        Double contractTerm = (Double.parseDouble(yearFormat.format(endContract))
+                - Double.parseDouble(yearFormat.format(beginContract))) * 12
+                + Double.parseDouble(monthFormat.format(endContract))
+                - Double.parseDouble(monthFormat.format(beginContract));
+
         employee.setContractTerm(Double.parseDouble(decimalFormat.format(contractTerm / 12)));
+
         return empMapper.addEmp(employee);
     }
 
@@ -52,7 +56,9 @@ public class EmpService {
         return maxWorkID == null ? 0 : maxWorkID;
     }
 
-    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long politicId, Long nationId, Long posId, Long jobLevelId, String engageForm, Long departmentId, String beginDateScope) {
+    public List<Employee> getEmployeeByPage(Integer page, Integer size, String keywords, Long politicId, Long nationId,
+                                            Long posId, Long jobLevelId, String engageForm, Long departmentId, String beginDateScope) {
+
         int start = (page - 1) * size;
         Date startBeginDate = null;
         Date endBeginDate = null;
@@ -62,12 +68,15 @@ public class EmpService {
                 startBeginDate = birthdayFormat.parse(split[0]);
                 endBeginDate = birthdayFormat.parse(split[1]);
             } catch (ParseException e) {
+
             }
         }
-        return empMapper.getEmployeeByPage(start, size, keywords, politicId, nationId, posId, jobLevelId, engageForm, departmentId, startBeginDate, endBeginDate);
+        return empMapper.getEmployeeByPage(start, size, keywords, politicId, nationId,
+                posId, jobLevelId, engageForm, departmentId, startBeginDate, endBeginDate);
     }
 
-    public Long getCountByKeywords(String keywords, Long politicId, Long nationId, Long posId, Long jobLevelId, String engageForm, Long departmentId, String beginDateScope) {
+    public Long getCountByKeywords(String keywords, Long politicId, Long nationId, Long posId, Long jobLevelId,
+                                   String engageForm, Long departmentId, String beginDateScope) {
         Date startBeginDate = null;
         Date endBeginDate = null;
         if (beginDateScope != null && beginDateScope.contains(",")) {
@@ -84,7 +93,11 @@ public class EmpService {
     public int updateEmp(Employee employee) {
         Date beginContract = employee.getBeginContract();
         Date endContract = employee.getEndContract();
-        Double contractTerm = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract));
+        Double contractTerm = (
+                Double.parseDouble(yearFormat.format(endContract))
+                - Double.parseDouble(yearFormat.format(beginContract))) * 12 
+                + Double.parseDouble(monthFormat.format(endContract))
+                - Double.parseDouble(monthFormat.format(beginContract));
         employee.setContractTerm(Double.parseDouble(decimalFormat.format(contractTerm / 12)));
         return empMapper.updateEmp(employee);
     }
@@ -104,6 +117,6 @@ public class EmpService {
 
     public List<Employee> getEmployeeByPageShort(Integer page, Integer size) {
         int start = (page - 1) * size;
-        return empMapper.getEmployeeByPageShort(start,size);
+        return empMapper.getEmployeeByPageShort(start, size);
     }
 }
