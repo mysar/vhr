@@ -64,6 +64,7 @@ public class HrService implements UserDetailsService {
     }
 
     public int deleteHr(Long hrId) {
+        hrMapper.deleteRoleByHrId(hrId);
         return hrMapper.deleteHr(hrId);
     }
 

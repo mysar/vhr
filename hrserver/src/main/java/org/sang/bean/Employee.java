@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 
 /**
- * Tip:
+ * Tip: 员工表
  *
  * @author Im.Yan
  * @date 2019/2/1
@@ -38,7 +38,7 @@ public class Employee {
     private Date beginDate;
     private String workState;
     private String workID;
-    private Double contractTerm;
+    private Double contractTerm;  // 合同期限 (时间)
     private Date conversionTime;
     private Date notWorkDate;
     private Date beginContract;
@@ -49,6 +49,7 @@ public class Employee {
     private JobLevel jobLevel;
     private Position position;
     private PoliticsStatus politicsStatus;
+    @JsonIgnore
     private Salary salary;
 
     public Salary getSalary() {
