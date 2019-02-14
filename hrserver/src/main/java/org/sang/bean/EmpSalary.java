@@ -1,20 +1,15 @@
 package org.sang.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
 /**
- * Tip: 员工表
- *
- * @author Im.Yan
- * @date 2019/2/1
- * @JsonIgnore作用在属性和方法上，效果是一样的，都会屏蔽掉get、set方法
- * @JsonProperty作用在get、set方法上，可以保留get、set方法
+ * Tip: 员工薪资表
+ * Created by Im.Yan on 2019/2/15.
  */
-@JsonIgnoreProperties({ "salary"})
-public class Employee {
+
+public class EmpSalary {
     private Long id;
     private String name;
     private String gender;
@@ -58,6 +53,7 @@ public class Employee {
     public Salary getSalary() {
         return salary;
     }
+
 
     public void setSalary(Salary salary) {
         this.salary = salary;
