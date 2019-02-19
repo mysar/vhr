@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sang.mapper.RewardMapper">
+
+    <!-- 新增-->
+    <insert id="add">
+        insert into tab_reward (openid,empId,empName,time,msg)
+        values
+        (#{openid,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{empName,jdbcType=VARCHAR},
+        #{time,jdbcType=VARCHAR},#{msg,jdbcType=VARCHAR})
+    </insert>
+
+
+
+    <update id="updateById"></update>
+    <delete id="deleteById"></delete>
+
+    <!-- 根据名称查询员工奖惩记录-->
+    <select id="getByName" resultType="org.sang.bean.Entity.RewardEntity">
+        select * from tab_reward where  empName = #{name}
+    </select>
+    <!-- 获取所有-->
+    <select id="getAll" resultType="org.sang.bean.Entity.RewardEntity">
+        select * from tab_reward
+    </select>
+</mapper>
