@@ -1,7 +1,7 @@
 package org.sang.bean.Entity;
 
-/**员工奖惩记录表
- * Tip:
+/**
+ * Tip:员工奖惩记录表
  * Created by Im.Yan on 2019/2/17.
  */
 
