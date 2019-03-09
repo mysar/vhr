@@ -26,8 +26,8 @@ public class RewardService {
 
     public List<RewardEntity> getAllByPage(Integer page, Integer rows, String keywords) {
         List<RewardEntity> list = rewardMapper.getAllByPage(page, rows, keywords);
-        List<RewardEntity> list1 = PageUtil.getPage(list,page,rows);
-        return list1;
+
+        return list;
     }
 
     public int update(RewardEntity entity) {

@@ -7,18 +7,18 @@ package org.sang.bean.Entity;
 
 public class RewardEntity {
 
-    private String openid;
+    private Long id;
     private String empId;   // 员工id
     private String empName; // 员工姓名
     private String time;    // 发生时间
     private String msg;     // 详细信息
 
-    public String getOpenid() {
-        return openid;
+    public Long getId() {
+        return id;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmpId() {
@@ -56,7 +56,7 @@ public class RewardEntity {
     @Override
     public String toString() {
         return "RewardEntity{" +
-                "openid='" + openid + '\'' +
+                "id='" + id + '\'' +
                 ", empId='" + empId + '\'' +
                 ", empName='" + empName + '\'' +
                 ", time='" + time + '\'' +

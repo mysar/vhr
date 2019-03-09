@@ -2,6 +2,7 @@ package org.sang.controller.base;
 
 import org.sang.bean.Entity.RewardEntity;
 import org.sang.bean.RespBean;
+import org.sang.common.PageUtil;
 import org.sang.service.EmpService;
 import org.sang.service.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Tip: 奖惩记录
@@ -34,8 +37,14 @@ public class RewardController {
     }
 
     @RequestMapping(value = "/getPage", method = RequestMethod.GET)
-    public List<RewardEntity> getAll(Integer page, Integer rows, String keywords) {
-        return service.getAllByPage(page, rows, keywords);
+    public Map<String, Object> getAll(Integer page, Integer rows, String keywords) {
+        Map<String, Object> map = new HashMap<>();
+        List<RewardEntity> list  = service.getAllByPage(page, rows, keywords);
+        List<RewardEntity> results = PageUtil.getPage(list,page,rows);
+
+        map.put("respList", results);
+        map.put("count", list.size());
+        return map;
     }
 
 
