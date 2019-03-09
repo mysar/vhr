@@ -3,7 +3,7 @@ package org.sang.bean;
 import java.io.Serializable;
 
 /**
- * Tip:
+ * Tip: 角色
  *
  * @author Im.Yan
  * @date 2019/2/1

@@ -1,7 +1,7 @@
 package org.sang.bean;
 
 /**
- * Tip:
+ * Tip: 民族
  *
  * @author Im.Yan
  * @date 2019/2/1

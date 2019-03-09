@@ -10,10 +10,15 @@
         #{time,jdbcType=VARCHAR},#{msg,jdbcType=VARCHAR})
     </insert>
 
+    <update id="updateById">
 
-
-    <update id="updateById"></update>
-    <delete id="deleteById"></delete>
+    </update>
+    <delete id="deleteByIds">
+        DELETE FROM tab_reward WHERE id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
 
     <!-- 根据名称查询员工奖惩记录-->
     <select id="getByName" resultType="org.sang.bean.Entity.RewardEntity">
@@ -23,4 +28,8 @@
     <select id="getAll" resultType="org.sang.bean.Entity.RewardEntity">
         select * from tab_reward
     </select>
+    <select id="getAllByPage" resultType="org.sang.bean.Entity.RewardEntity">
+        select * from tab_reward where 1 = 1
+    </select>
+
 </mapper>

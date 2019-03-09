@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tip:
+ * Tip: 部门
  *
  * @author Im.Yan
  * @date 2019/2/1
@@ -52,6 +52,7 @@ public class Department {
     public void setChildren(List<Department> children) {
         this.children = children;
     }
+
     @JsonIgnore
     public Integer getResult() {
         return result;

@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 /**
- * Tip:
+ * Tip: 薪金
  *
  * @author Im.Yan
  * @date 2019/2/1

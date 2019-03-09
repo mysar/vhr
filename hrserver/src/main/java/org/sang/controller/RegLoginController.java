@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Tip:
+ * Tip: 注册登陆
  *
  * @author Im.Yan
  * @date 2019/2/1
@@ -23,10 +23,13 @@ public class RegLoginController {
     public RespBean login() {
         return RespBean.error("尚未登录，请登录!");
     }
+
     @GetMapping("/employee/advanced/hello")
     public String hello() {
         return "hello";
-    }    @GetMapping("/employee/basic/hello")
+    }
+
+    @GetMapping("/employee/basic/hello")
     public String basicHello() {
         return "basicHello";
     }
