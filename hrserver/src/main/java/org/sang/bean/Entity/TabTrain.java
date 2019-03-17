@@ -1,6 +1,5 @@
 package org.sang.bean.Entity;
 
-
 /**
  * Tip: 员工培训记录表
  * Created by Im.Yan on 2019/3/9.

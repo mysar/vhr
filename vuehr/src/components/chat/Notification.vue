@@ -134,11 +134,7 @@
           }
         })
       },
-      cancelSend(){
-        this.dialogVisible = false;
-        this.title = '';
-        this.message = '';
-      },
+
       sendNFMsg(){
         this.dialogLoading = true;
         var _this = this;
@@ -155,11 +151,11 @@
           }
         })
       },
-//      cancelSend(){
-//        this.dialogVisible = false;
-//        this.title = '';
-//        this.message = '';
-//      }
+      cancelSend(){
+        this.dialogVisible = false;
+        this.title = '';
+        this.message = '';
+      }
     }
   }
 </script>

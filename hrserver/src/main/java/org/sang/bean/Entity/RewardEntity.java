@@ -56,7 +56,7 @@ public class RewardEntity {
     @Override
     public String toString() {
         return "RewardEntity{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", empId='" + empId + '\'' +
                 ", empName='" + empName + '\'' +
                 ", time='" + time + '\'' +

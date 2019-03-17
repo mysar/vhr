@@ -4,14 +4,22 @@
 
     <!-- 新增-->
     <insert id="add">
-        insert into tab_reward (openid,empId,empName,time,msg)
-        values
-        (#{openid,jdbcType=VARCHAR},#{empId,jdbcType=VARCHAR},#{empName,jdbcType=VARCHAR},
-        #{time,jdbcType=VARCHAR},#{msg,jdbcType=VARCHAR})
+        insert into
+          tab_reward (empId,empName,`time`,msg)
+        values (
+          #{entity.empId,jdbcType=VARCHAR},#{entity.empName,jdbcType=VARCHAR},
+          #{entity.time,jdbcType=VARCHAR},#{entity.msg,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById">
-
+        update tab_reward
+        <set>
+            empId = #{entity.empId},
+            `time` = #{entity.time,jdbcType=VARCHAR},
+            empName = #{entity.empName},
+            msg = #{entity.msg}
+        </set>
+        WHERE id = #{entity.id}
     </update>
     <delete id="deleteByIds">
         DELETE FROM tab_reward WHERE id IN

@@ -3,7 +3,7 @@ package org.sang.bean;
 import java.sql.Timestamp;
 
 /**
- * Tip:
+ * Tip: 工作职位
  *
  * @author Im.Yan
  * @date 2019/2/1

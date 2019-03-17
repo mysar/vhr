@@ -1,144 +1,310 @@
 <template>
+  <div>
+    <el-container>
+      <el-header style="padding: 0px;display:flex;justify-content:space-between;align-items: center">
 
-  <div style="margin-top: 10px">
-    <el-table
-      :data="emps"
-      size="mini"
-      border
-      stripe
-      v-loading="tableLoading"
-      style="width: 100%">
-      <el-table-column
-        type="selection"
-        align="left"
-        width="55">
-      </el-table-column>
-      <el-table-column
-        prop="empName"
-        align="left"
-        fixed
-        label="姓名"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="empId"
-        width="120"
-        align="left"
-        label="工号">
-      </el-table-column>
-      <el-table-column
-        prop="time"
-        width="200"
-        align="left"
-        label="发生时间">
-      </el-table-column>
-      <el-table-column
-        prop="msg"
-        width="120"
-        label="简述信息">
-      </el-table-column>
+        <div style="margin-left: 5px;margin-right: 20px;display: inline">
 
+          <el-button type="primary" size="mini" icon="el-icon-plus" @click="showAddEmpView">
+            添加奖惩数据
+          </el-button>
+        </div>
+      </el-header>
+      <el-main style="padding-left: 0px;padding-top: 0px">
+        <div>
+          <!-- 数据表格加载 -->
+          <el-table :data="emps" v-loading="tableLoading" border stripe @selection-change="handleSelectionChange"
+                    size="mini"
+                    style="width: 100%">
+            <el-table-column type="selection" width="30"/>
+            <el-table-column align="left" prop="id" label="ID" width="60"/>
+            <el-table-column align="left" prop="empName" label="姓名" width="110"/>
+            <el-table-column align="left" prop="empId" label="用户id" width="110"/>
+            <el-table-column align="left" prop="msg" label="奖惩信息"/>
 
-      <el-table-column label="操作" align="center">
-        <template slot-scope="scope">
-          <el-popover
-            placement="right"
-            width="200"
-            @hide="updateSalaryCfg(scope.row.id)"
-            :key="scope.row.id"
-            trigger="click">
-            <el-select size="mini" v-model="sid" placeholder="请选择">
-              <el-option
-                v-for="item in salaries"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
-              </el-option>
-            </el-select>
-            <el-button
-              size="mini"
-              slot="reference"
-              type="danger" @click="showUpdateView(scope.row)">修改
+            <el-table-column
+              fixed="right"
+              width="200"
+              label="操作">
+              <template slot-scope="scope">
+                <el-button @click="showEditEmpView(scope.row)" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini">编辑
+                </el-button>
+                <el-button type="danger" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini"
+                           @click="deleteEmp(scope.row)" icon="el-icon-delete" />
+              </template>
+            </el-table-column>
+          </el-table>
+          <!-- 批量删除按钮 -->
+          <div style="display: flex;justify-content: space-between;margin: 2px">
+            <el-button type="danger" size="mini" v-if="emps.length>0" :disabled="multipleSelection.length==0"
+                       @click="deleteManyEmps">批量删除
             </el-button>
-          </el-popover>
-        </template>
-      </el-table-column>
-    </el-table>
-    <div style="text-align: right;margin-top: 10px">
-      <el-pagination
-        background
-        @current-change="currentChange"
-        layout="prev, pager, next"
-        :total="totalCount">
-      </el-pagination>
-    </div>
+            <el-pagination
+              background
+              :page-size="10"
+              :current-page="currentPage"
+              @current-change="currentChange"
+              layout="prev, pager, next"
+              :total="totalCount">
+            </el-pagination>
+          </div>
+        </div>
+      </el-main>
+
+      <!-- 新增修改弹出框 -->
+    </el-container>
+    <el-form :model="emp" :rules="rules" ref="addEmpForm" style="margin: 0px;padding: 0px;">
+      <div style="text-align: left">
+        <el-dialog
+          :title="dialogTitle"
+          style="padding: 50px;"
+          :close-on-click-modal="false"
+          :visible.sync="dialogVisible"
+          width="50%">
+          <el-row>
+            <el-col :span="6">
+              <div>
+                <el-form-item label="姓名:" prop="empName">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.empName" size="mini" style="width: 150px"
+                            placeholder="请输入员工姓名" />
+                </el-form-item>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div>
+                <el-form-item label="用户id:" prop="empId">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.empId" size="mini" style="width: 150px"
+                            placeholder="请输入员工id" />
+                </el-form-item>
+              </div>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <div>
+                <el-form-item label="详细信息:" prop="msg">
+                  <el-input prefix-icon="el-icon-edit" v-model="emp.msg" type="textarea" style="width: 320px"
+                            :rows="3"
+                            placeholder="" />
+                </el-form-item>
+              </div>
+            </el-col>
+          </el-row>
+          <span slot="footer" class="dialog-footer">
+    <el-button size="mini" @click="cancelEidt">取 消</el-button>
+    <el-button size="mini" type="primary" @click="addEmp('addEmpForm')">确 定</el-button>
+  </span>
+        </el-dialog>
+      </div>
+    </el-form>
   </div>
 </template>
+
+
 <script>
-  export default{
-    data(){
+  export default {
+    data() {
       return {
-        emps: [],
-        salaries: [],
-        tableLoading: false,
+        emp: [],
+        keywords: '',
+        dialogTitle: '',
+        multipleSelection: [],
+        depTextColor: '#c0c4cc',
+        nations: [],
+        politics: [],
+        positions: [],
+        joblevels: [],
         totalCount: -1,
-        sid: '',
-        osid: '',
-        currentPage: 1
-      }
+        currentPage: 1,
+        defaultProps: {
+          label: 'name',
+          isLeaf: 'leaf',
+          children: 'children'
+        },
+        dialogVisible: false,
+        tableLoading: false,
+        advanceSearchViewVisible: false,
+        showOrHidePop: false,
+        showOrHidePop2: false,
+        emp: {
+          empName: '',
+          empId: '',
+          msg: ''
+        }
+      };
     },
     mounted: function () {
+//      this.initData();
       this.loadEmps();
     },
     methods: {
-      showUpdateView(data){
-        this.loadSalaries();
-        if (data.salary) {
-          this.sid = data.salary.id;
-          this.osid = data.salary.id;
-        } else {
-          this.sid = '';
-          this.osid = '';
-        }
+      handleSelectionChange(val) {
+        this.multipleSelection = val;
       },
-      loadSalaries(){
-        var _this = this;
-        this.getRequest("/reward/getPage").then(resp => {
-          if (resp && resp.status == 200) {
-            _this.salaries = resp.data;
+      deleteManyEmps(){
+        this.$confirm('此操作将删除[' + this.multipleSelection.length + ']条数据, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          var ids = '';
+          for (var i = 0; i < this.multipleSelection.length; i++) {
+            ids += this.multipleSelection[i].id + ",";
           }
-        })
+          this.doDelete(ids);
+        }).catch(() => {
+        });
       },
-      updateSalaryCfg(eid){
+      deleteEmp(row){
+        this.$confirm('此操作将永久删除[' + row.name + '], 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.doDelete(row.id);
+        }).catch(() => {
+        });
+      },
+      doDelete(ids){
+        this.tableLoading = true;
         var _this = this;
-        if (this.osid == this.sid) {
-          return;
-        }
-        this.putRequest("/salary/sobcfg/", {eid: eid, sid: this.sid}).then(resp => {
+        this.deleteRequest("/reward/delete/" + ids).then(resp => {
+          _this.tableLoading = false;
           if (resp && resp.status == 200) {
             var data = resp.data;
-            _
             _this.loadEmps();
           }
         })
       },
-      currentChange(currentPage){
-        this.currentPage = currentPage;
+      keywordsChange(val){
+        if (val == '') {
+          this.loadEmps();
+        }
+      },
+      searchEmp(){
+        this.loadEmps();
+      },
+      currentChange(currentChange){
+        this.currentPage = currentChange;
         this.loadEmps();
       },
       loadEmps(){
-        this.tableLoading = true;
         var _this = this;
-        this.getRequest("/reward/getPage?page=" + this.currentPage + "&rows=10").then(resp => {
-          _this.tableLoading = false;
+        this.tableLoading = true;
+        this.getRequest("/reward/getPage?page=" + this.currentPage + "&rows=10&keywords=" + this.keywords).then(resp => {
+          this.tableLoading = false;
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.emps = data.respList;
             _this.totalCount = data.count;
           }
         })
+      },
+      addEmp(formName){
+        var _this = this;
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            if (this.emp.id) {
+              //更新
+              this.tableLoading = true;
+              this.putRequest("/reward/update", this.emp).then(resp => {
+                _this.tableLoading = false;
+                if (resp && resp.status == 200) {
+                  var data = resp.respList;
+                  _this.dialogVisible = false;
+                  _this.emptyEmpData();
+                  _this.loadEmps();
+                }
+              })
+            } else {
+              //添加
+              this.tableLoading = true;
+              this.postRequest("/reward/add", this.emp).then(resp => {
+                _this.tableLoading = false;
+                if (resp && resp.status == 200) {
+                  var data = resp.data;
+                  _this.dialogVisible = false;
+                  _this.emptyEmpData();
+                  _this.loadEmps();
+                }
+              })
+            }
+          } else {
+            return false;
+          }
+        });
+      },
+      cancelEidt(){
+        this.dialogVisible = false;
+        this.emptyEmpData();
+      },
+      showDepTree(){
+        this.showOrHidePop = !this.showOrHidePop;
+      },
+      showDepTree2(){
+        this.showOrHidePop2 = !this.showOrHidePop2;
+      },
+      handleNodeClick(data) {
+        this.emp.departmentName = data.name;
+        this.emp.departmentId = data.id;
+        this.showOrHidePop = false;
+        this.depTextColor = '#606266';
+      },
+      handleNodeClick2(data) {
+        this.emp.departmentName = data.name;
+        this.emp.departmentId = data.id;
+        this.showOrHidePop2 = false;
+        this.depTextColor = '#606266';
+      },
+
+      showEditEmpView(row){
+        console.log(row)
+        this.dialogTitle = "编辑信息";
+        this.emp = row;
+        this.emp.empId = row.empId;
+        this.emp.empName = row.empName;
+        this.emp.msg = row.msg;
+
+        delete this.emp.notWorkDate;
+        this.dialogVisible = true;
+      },
+      showAddEmpView(){
+        this.dialogTitle = "添加信息";
+        this.dialogVisible = true;
+
+        delete this.emp.empId;
+        delete this.emp.msg;
+        delete this.emp.id;
+        delete this.emp.empName;
+
+        var _this = this;
+      },
+      emptyEmpData(){
+        this.emp = {
+          empName: '',
+          empId: '',
+          msg: '',
+        }
       }
     }
-  }
+  };
 </script>
+<style>
+  .el-dialog__body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 
+  .slide-fade-enter-active {
+    transition: all .8s ease;
+  }
+
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+</style>

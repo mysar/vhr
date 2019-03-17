@@ -16,7 +16,7 @@ public interface TabTrainMapper {
     int add(@Param("entity") TabTrain entity);
     int update(@Param("entity") TabTrain entity);
 
-    List<TabTrain> getAll(String keyword);
+    List<TabTrain> getAll();
 
 
     int delete(@Param("ids") String[] ids);

@@ -1,6 +1,7 @@
 package org.sang.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.sang.bean.Entity.PersonSalary;
 import org.sang.bean.Salary;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,8 @@ import java.util.List;
  */
 @Repository
 public interface SalaryMapper {
+
+    List<PersonSalary> getPersionSalary(@Param("yhId") String yhId, @Param("yhName") String yhName);
 
 
     int addSalary(@Param("salary") Salary salary);

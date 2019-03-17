@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Tip:
+ * Tip: 菜单->查询递归
  *
  * @author Im.Yan
  * @date 2019/2/1

@@ -124,6 +124,7 @@ public class EmpBasicController {
                 empService.getAllNations(), empService.getAllPolitics(),
                 departmentService.getAllDeps(), positionService.getAllPos(),
                 jobLevelService.getAllJobLevels());
+        System.out.println(emps.toString());
         if (empService.addEmps(emps) == emps.size()) {
             return RespBean.ok("导入成功!");
         }

@@ -50,6 +50,7 @@ public class RewardController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public RespBean updateSalary(RewardEntity entity) {
+        System.out.println(entity.toString());
         if (service.update(entity) == 1) {
             return RespBean.ok("更新成功!");
         }

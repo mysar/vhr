@@ -18,6 +18,7 @@
     <select id="getAllSalary" resultType="org.sang.bean.Salary">
         SELECT * FROM salary;
     </select>
+
     <update id="updateSalary" parameterType="org.sang.bean.Salary">
         update salary
         <set>
@@ -75,4 +76,18 @@
     <insert id="addSidAndEid">
         INSERT INTO empsalary set eid=#{eid},sid=#{sid}
     </insert>
+
+
+    <select id="getPersionSalary" resultType="org.sang.bean.Entity.PersonSalary">
+        SELECT e.id,e.`name`,s.basicSalary as jbgz,s.bonus as jj,s.lunchSalary as wcbz,s.trafficSalary as jtbz
+        FROM employee e
+        LEFT JOIN empsalary a on a.eid=e.id
+        LEFT JOIN salary s ON s.id = a.sid WHERE 1=1
+        <if test="yhName!=null and yhName!=''">
+            and  e.`name` LIKE concat('%',#{yhName},'%');
+        </if>
+        <if test="yhId!=null and yhId!=''">
+            and e.id = #{yhId}
+        </if>
+    </select>
 </mapper>

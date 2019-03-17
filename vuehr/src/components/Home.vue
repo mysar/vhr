@@ -136,7 +136,7 @@
   }
 
   .home-header {
-    background-color: #17B3A3;
+    background-color: #1979CA;
     color: #333;
     text-align: center;
     display: flex;

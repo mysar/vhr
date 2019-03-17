@@ -23,24 +23,7 @@
           </el-button>
         </div>
         <div style="margin-left: 5px;margin-right: 20px;display: inline">
-          <el-upload
-            :show-file-list="false"
-            accept="application/vnd.ms-excel"
-            action="/employee/basic/importEmp"
-            :on-success="fileUploadSuccess"
-            :on-error="fileUploadError" :disabled="fileUploadBtnText=='正在导入'"
-            :before-upload="beforeFileUpload" style="display: inline">
-            <el-button size="mini" type="success" :loading="fileUploadBtnText=='正在导入'"><i class="fa fa-lg fa-level-up"
-                                                                                          style="margin-right: 5px"></i>{{fileUploadBtnText}}
-            </el-button>
-          </el-upload>
-          <el-button type="success" size="mini" @click="exportEmps"><i class="fa fa-lg fa-level-down"
-                                                                       style="margin-right: 5px"></i>导出数据
-          </el-button>
-          <el-button type="primary" size="mini" icon="el-icon-plus"
-                     @click="showAddEmpView">
-            添加员工
-          </el-button>
+
         </div>
       </el-header>
       <el-main style="padding-left: 0px;padding-top: 0px">
@@ -152,6 +135,12 @@
               width="30">
             </el-table-column>
             <el-table-column
+              prop="workID"
+              width="85"
+              align="left"
+              label="工号">
+            </el-table-column>
+            <el-table-column
               prop="name"
               align="left"
               fixed
@@ -159,142 +148,36 @@
               width="90">
             </el-table-column>
             <el-table-column
-              prop="workID"
-              width="85"
-              align="left"
-              label="工号">
-            </el-table-column>
-            <el-table-column
               prop="gender"
               label="性别"
               width="50">
             </el-table-column>
             <el-table-column
-              width="85"
               align="left"
               label="出生日期">
               <template slot-scope="scope">{{ scope.row.birthday | formatDate}}</template>
             </el-table-column>
             <el-table-column
               prop="idCard"
-              width="150"
               align="left"
               label="身份证号码">
             </el-table-column>
-            <el-table-column
-              prop="wedlock"
-              width="70"
-              label="婚姻状况">
-            </el-table-column>
-            <el-table-column
-              width="50"
-              prop="nation.name"
-              label="民族">
-            </el-table-column>
-            <el-table-column
-              prop="nativePlace"
-              width="80"
-              label="籍贯">
-            </el-table-column>
-            <el-table-column
-              prop="politicsStatus.name"
-              label="政治面貌">
-            </el-table-column>
-            <el-table-column
-              prop="email"
-              width="180"
-              align="left"
-              label="电子邮件">
-            </el-table-column>
-            <el-table-column
-              prop="phone"
-              width="100"
-              label="电话号码">
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              width="220"
-              align="left"
-              label="联系地址">
-            </el-table-column>
+
             <el-table-column
               prop="department.name"
               align="left"
-              width="100"
               label="所属部门">
             </el-table-column>
+
             <el-table-column
-              width="100"
-              align="left"
-              prop="position.name"
-              label="职位">
-            </el-table-column>
-            <el-table-column
+              fixed="right"
               prop="jobLevel.name"
-              width="100"
               align="left"
               label="职称">
             </el-table-column>
-            <el-table-column
-              prop="engageForm"
-              label="聘用形式">
-            </el-table-column>
-            <el-table-column
-              width="85"
-              align="left"
-              label="入职日期">
-              <template slot-scope="scope">{{ scope.row.beginDate | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="85"
-              align="left"
-              label="转正日期">
-              <template slot-scope="scope">{{ scope.row.conversionTime | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="95"
-              align="left"
-              label="合同起始日期">
-              <template slot-scope="scope">{{ scope.row.beginContract | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              width="95"
-              align="left"
-              label="合同截至日期">
-              <template slot-scope="scope">{{ scope.row.endContract | formatDate}}</template>
-            </el-table-column>
-            <el-table-column
-              align="left"
-              width="70"
-              label="合同期限">
-              <template slot-scope="scope">{{ scope.row.contractTerm}}年</template>
-            </el-table-column>
-            <el-table-column
-              align="left"
-              prop="tiptopDegree"
-              label="最高学历">
-            </el-table-column>
-            <el-table-column
-              fixed="right"
-              label="操作"
-              width="195">
-              <template slot-scope="scope">
-                <el-button @click="showEditEmpView(scope.row)" style="padding: 3px 4px 3px 4px;margin: 2px"
-                           size="mini">编辑
-                </el-button>
-                <el-button style="padding: 3px 4px 3px 4px;margin: 2px" type="primary"
-                           size="mini">查看高级资料
-                </el-button>
-                <el-button type="danger" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini"
-                           @click="deleteEmp(scope.row)">删除
-                </el-button>
-              </template>
-            </el-table-column>
+
           </el-table>
-          <div style="display: flex;justify-content: space-between;margin: 2px">
-            <el-button type="danger" size="mini" v-if="emps.length>0" :disabled="multipleSelection.length==0"
-                       @click="deleteManyEmps">批量删除
-            </el-button>
+          <div style="display: flex; float:right; justify-content: space-between;margin: 2px">
             <el-pagination
               background
               :page-size="10"
@@ -887,11 +770,7 @@
         this.emp.departmentName = row.department.name;
         this.emp.jobLevelId = row.jobLevel.id;
         this.emp.posId = row.position.id;
-//        delete this.emp.department;
-//        delete this.emp.jobLevel;
-//        delete this.emp.position;
-//        delete this.emp.nation;
-//        delete this.emp.politicsStatus;
+
         delete this.emp.workAge;
         delete this.emp.notWorkDate;
         this.dialogVisible = true;

@@ -2,7 +2,6 @@ package org.sang.bean;
 
 import java.util.Date;
 
-
 /**
  * Tip: 薪金
  *

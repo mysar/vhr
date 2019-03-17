@@ -1,5 +1,6 @@
 package org.sang.service;
 
+import org.sang.bean.Entity.PersonSalary;
 import org.sang.bean.Salary;
 import org.sang.mapper.SalaryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,14 @@ import java.util.List;
 public class SalaryService {
     @Autowired
     SalaryMapper salaryMapper;
+
+    public List<PersonSalary> getPersionSalary(String yhId,String yhName) {
+        return salaryMapper.getPersionSalary(yhId, yhName);
+    }
+
+
+
+
     public int addSalary(Salary salary) {
         return salaryMapper.addSalary(salary);
     }

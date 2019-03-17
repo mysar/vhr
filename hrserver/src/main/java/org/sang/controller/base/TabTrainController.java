@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Tip: 培训记录表
@@ -32,7 +32,7 @@ public class TabTrainController {
     }
 
     @RequestMapping(value = "/getPage", method = RequestMethod.GET)
-    public List<TabTrain> getAll(Integer page, Integer rows, String keywords) {
+    public Map<String, Object> getAll(Integer page, Integer rows, String keywords) {
         return service.getAllByPage(page, rows, keywords);
     }
 

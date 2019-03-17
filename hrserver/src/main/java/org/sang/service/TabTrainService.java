@@ -1,12 +1,15 @@
 package org.sang.service;
 
 import org.sang.bean.Entity.TabTrain;
+import org.sang.common.Constant;
 import org.sang.common.PageUtil;
 import org.sang.mapper.TabTrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Tip:
@@ -23,10 +26,22 @@ public class TabTrainService {
         return mapper.add(entity);
     }
 
-    public List<TabTrain> getAllByPage(Integer page, Integer rows, String keywords) {
-        List<TabTrain> list = mapper.getAll(keywords);
-        List<TabTrain> list1 = PageUtil.getPage(list,page,rows);
-        return list1;
+    public Map<String, Object> getAllByPage(Integer page, Integer rows, String keywords) {
+        Map<String, Object> map = new HashMap<>();
+        List<TabTrain> list = mapper.getAll();
+
+        if (list.isEmpty()){
+            TabTrain entity = new TabTrain();
+            entity.setId((long) -1);
+            list.add(entity);
+            map.put("respList", list);
+            map.put("count", 1);
+        } else {
+            List<TabTrain> results = PageUtil.getPage(list, page, rows);
+            map.put("respList", results);
+            map.put("count", list.size());
+        }
+        return map;
     }
 
     public int update(TabTrain entity) {
